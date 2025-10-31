@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Options - Dulin</title>
+    <link rel="stylesheet" href="payment-options.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/umd/lucide.min.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">DULIN</div>
+        <div class="nav-info">
+            <span class="order-id">Order: <strong id="orderId">---</strong></span>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="payment-options-container">
+        <div class="payment-card">
+            <!-- Header -->
+            <div class="payment-header">
+                <button class="back-btn-header" onclick="goBack()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 12H5M12 19l-7-7 7-7"/>
+                    </svg>
+                </button>
+                <div>
+                    <h1>Complete Payment</h1>
+                    <p>Choose how you'd like to pay</p>
+                </div>
+            </div>
+
+            <!-- Amount Display -->
+            <div class="amount-display">
+                <span class="amount-label">Amount to Pay</span>
+                <span class="amount-value" id="amountToPay">₦0</span>
+            </div>
+
+            <!-- Payment Options -->
+            <div class="payment-methods">
+                <!-- Card Payment -->
+                <div class="payment-method-section">
+                    <h2>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                            <line x1="1" y1="10" x2="23" y2="10"></line>
+                        </svg>
+                        Pay with Card
+                    </h2>
+                    
+                    <form id="cardPaymentForm">
+                        <div class="form-group">
+                            <label for="cardNumber">Card Number</label>
+                            <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" required>
+                            <div class="card-types">
+                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 32'%3E%3Crect width='48' height='32' rx='4' fill='%231434CB'/%3E%3C/svg%3E" alt="Visa">
+                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 32'%3E%3Crect width='48' height='32' rx='4' fill='%23EB001B'/%3E%3C/svg%3E" alt="Mastercard">
+                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 32'%3E%3Crect width='48' height='32' rx='4' fill='%23016FD0'/%3E%3C/svg%3E" alt="Verve">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="expiryDate">Expiry Date</label>
+                                <input type="text" id="expiryDate" placeholder="MM/YY" maxlength="5" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="cvv">CVV</label>
+                                <input type="text" id="cvv" placeholder="123" maxlength="3" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cardName">Cardholder Name</label>
+                            <input type="text" id="cardName" placeholder="JOHN DOE" required>
+                        </div>
+
+                        <button type="submit" class="pay-btn">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                            </svg>
+                            Pay ₦<span id="payAmount">0</span>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Divider -->
+                <div class="divider">
+                    <span>OR</span>
+                </div>
+
+                <!-- Bank Transfer -->
+                <div class="alternative-payment">
+                    <button class="alt-payment-btn" onclick="selectMethod('bank-transfer')">
+                        <div class="alt-payment-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="2" y="5" width="20" height="14" rx="2"></rect>
+                                <line x1="2" y1="10" x2="22" y2="10"></line>
+                            </svg>
+                        </div>
+                        <div class="alt-payment-info">
+                            <h3>Bank Transfer</h3>
+                            <p>Transfer to our account directly</p>
+                        </div>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- USSD -->
+                <div class="alternative-payment">
+                    <button class="alt-payment-btn" onclick="selectMethod('ussd')">
+                        <div class="alt-payment-icon" style="background: #10B981;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                                <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                            </svg>
+                        </div>
+                        <div class="alt-payment-info">
+                            <h3>USSD Payment</h3>
+                            <p>Dial code on your phone to pay</p>
+                        </div>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Security Info -->
+            <div class="security-info">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+                <span>Your payment information is secure and encrypted</span>
+            </div>
+        </div>
+    </main>
+
+    <script src="payment-options.js"></script>
+</body>
+</html>

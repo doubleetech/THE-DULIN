@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dulin Bank Transfer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #f6f7f9, #eaf7ec);
+      color: #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .transfer-container {
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(0, 100, 0, 0.1);
+      box-shadow: 0 8px 25px rgba(0, 128, 0, 0.15);
+      border-radius: 20px;
+      width: 400px;
+      padding: 30px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+    }
+
+    h2 {
+      color: darkgreen;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .bank-details {
+      background: #fff;
+      border: 1px solid #d8e8da;
+      border-radius: 12px;
+      padding: 15px;
+      margin: 15px 0;
+      text-align: left;
+    }
+
+    .bank-details p {
+      margin: 8px 0;
+      color: #333;
+      font-size: 15px;
+    }
+
+    .bank-details span {
+      color: darkgreen;
+      font-weight: 600;
+    }
+
+    .countdown {
+      margin: 15px 0;
+      font-size: 18px;
+      color: darkgreen;
+      font-weight: 600;
+    }
+
+    label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 20px;
+      cursor: pointer;
+      color: #444;
+      font-size: 15px;
+    }
+
+    input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      accent-color: darkgreen;
+      cursor: pointer;
+    }
+
+    .loader {
+      display: none;
+      margin-top: 20px;
+    }
+
+    .loader div {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: darkgreen;
+      animation: bounce 1s infinite ease-in-out alternate;
+    }
+
+    @keyframes bounce {
+      from { transform: translateY(0); }
+      to { transform: translateY(-15px); }
+    }
+
+    .footer-note {
+      margin-top: 25px;
+      font-size: 13px;
+      color: #777;
+    }
+
+    .highlight {
+      color: darkgreen;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="transfer-container">
+    <h2>Complete Your Bank Transfer</h2>
+    <p>Please transfer the exact amount to the account below within <span class="highlight">60 minutes</span>.</p>
+
+    <div class="bank-details">
+      <p>Bank Name: <span>Zenith Bank</span></p>
+      <p>Account Name: <span>Dulin Furniture Store</span></p>
+      <p>Account Number: <span>1234567890</span></p>
+      <p>Amount: <span>₦45,000</span></p>
+    </div>
+
+    <div class="countdown" id="countdown">60:00</div>
+
+    <label>
+      <input type="checkbox" id="confirmTransfer">
+      I've made the transfer
+    </label>
+
+    <div class="loader" id="loader">
+      <div></div>
+    </div>
+
+    <p class="footer-note">Your order will be processed once payment is confirmed.</p>
+  </div>
+
+  <script>
+    // Countdown timer (60 mins)
+    let timeLeft = 60 * 60; // seconds
+    const countdown = document.getElementById('countdown');
+
+    const timer = setInterval(() => {
+      const minutes = Math.floor(timeLeft / 60);
+      const seconds = timeLeft % 60;
+      countdown.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+      timeLeft--;
+
+      if (timeLeft < 0) {
+        clearInterval(timer);
+        countdown.textContent = "Time expired!";
+        countdown.style.color = "red";
+      }
+    }, 1000);
+
+    // Redirect after confirmation
+    const checkbox = document.getElementById('confirmTransfer');
+    const loader = document.getElementById('loader');
+
+    checkbox.addEventListener('change', () => {
+      if (checkbox.checked) {
+        loader.style.display = 'flex';
+        setTimeout(() => {
+          window.location.href = "payment-otp.html";
+        }, 2500);
+      } else {
+        loader.style.display = 'none';
+      }
+    });
+  </script>
+
+</body>
+</html>

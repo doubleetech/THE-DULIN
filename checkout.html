@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Dulin Furniture Store</title>
+    <link rel="stylesheet" href="checkout.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/umd/lucide.min.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo"><a href="index.html">DULIN</a></div>
+        <div class="checkout-steps">
+            <div class="step active">
+                <div class="step-number">1</div>
+                <span>Cart</span>
+            </div>
+            <div class="step-line"></div>
+            <div class="step active">
+                <div class="step-number">2</div>
+                <span>Checkout</span>
+            </div>
+            <div class="step-line"></div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <span>Payment</span>
+            </div>
+        </div>
+        <!-- <a href="index.html" class="back-home">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+        </a> -->
+    </nav>
+
+    <!-- Main Content -->
+    <main class="checkout-container">
+        <div class="checkout-grid">
+            <!-- Left Side - Forms -->
+            <div class="checkout-forms">
+                <!-- Contact Information -->
+                <section class="checkout-section">
+                    <div class="section-header">
+                        <h2>Contact Information</h2>
+                        <p class="section-subtitle">We'll use this to send order updates</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" placeholder="your.email@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" placeholder="+234 800 000 0000" required>
+                    </div>
+                </section>
+
+                <!-- Shipping Information -->
+                <section class="checkout-section">
+                    <div class="section-header">
+                        <h2>Shipping Address</h2>
+                        <p class="section-subtitle">Where should we deliver your order?</p>
+                    </div>
+                    <div class="form-grid-2">
+                        <div class="form-group">
+                            <label for="firstName">First Name *</label>
+                            <input type="text" id="firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name *</label>
+                            <input type="text" id="lastName" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Street Address *</label>
+                        <input type="text" id="address" placeholder="House number and street name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="apartment">Apartment, suite, etc. (optional)</label>
+                        <input type="text" id="apartment" placeholder="Apartment, suite, unit, building, floor, etc.">
+                    </div>
+                    <div class="form-grid-3">
+                        <div class="form-group">
+                            <label for="city">City *</label>
+                            <input type="text" id="city" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="state">State *</label>
+                            <select id="state" required>
+                                <option value="">Select State</option>
+                                <option value="Lagos">Lagos</option>
+                                <option value="Abuja">Abuja</option>
+                                <option value="Kano">Kano</option>
+                                <option value="Rivers">Rivers</option>
+                                <option value="Oyo">Oyo</option>
+                                <option value="Kaduna">Kaduna</option>
+                                <option value="Anambra">Anambra</option>
+                                <option value="Delta">Delta</option>
+                                <option value="Edo">Edo</option>
+                                <option value="Enugu">Enugu</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="zipCode">Zip Code</label>
+                            <input type="text" id="zipCode">
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Delivery Method -->
+                <section class="checkout-section">
+                    <div class="section-header">
+                        <h2>Delivery Method</h2>
+                        <p class="section-subtitle">Choose your preferred delivery option</p>
+                    </div>
+                    <div class="delivery-options">
+                        <label class="delivery-option">
+                            <input type="radio" name="delivery" value="standard" checked>
+                            <div class="option-content">
+                                <div class="option-header">
+                                    <span class="option-title">Standard Delivery</span>
+                                    <span class="option-price">₦2,000</span>
+                                </div>
+                                <p class="option-description">5-7 business days</p>
+                            </div>
+                            <div class="radio-check"></div>
+                        </label>
+                        <label class="delivery-option">
+                            <input type="radio" name="delivery" value="express">
+                            <div class="option-content">
+                                <div class="option-header">
+                                    <span class="option-title">Express Delivery</span>
+                                    <span class="option-price">₦5,000</span>
+                                </div>
+                                <p class="option-description">2-3 business days</p>
+                            </div>
+                            <div class="radio-check"></div>
+                        </label>
+                        <label class="delivery-option">
+                            <input type="radio" name="delivery" value="next-day">
+                            <div class="option-content">
+                                <div class="option-header">
+                                    <span class="option-title">Next Day Delivery</span>
+                                    <span class="option-price">₦10,000</span>
+                                </div>
+                                <p class="option-description">Next business day</p>
+                            </div>
+                            <div class="radio-check"></div>
+                        </label>
+                    </div>
+                </section>
+
+                <!-- Order Notes -->
+                <section class="checkout-section">
+                    <div class="section-header">
+                        <h2>Order Notes (Optional)</h2>
+                        <p class="section-subtitle">Any special instructions for your order?</p>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="orderNotes" rows="4" placeholder="e.g., Please call before delivery"></textarea>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Right Side - Order Summary -->
+            <div class="order-summary-container">
+                <div class="order-summary-sticky">
+                    <div class="order-summary">
+                        <h2>Order Summary</h2>
+                        
+                        <!-- Cart Items -->
+                        <div class="summary-items" id="summaryItems">
+                            <!-- Items will be loaded here -->
+                        </div>
+
+                        <!-- Promo Code -->
+                        <div class="promo-code-section">
+                            <input type="text" id="promoCode" placeholder="Enter promo code">
+                            <button onclick="applyPromoCode()">Apply</button>
+                        </div>
+
+                        <!-- Price Breakdown -->
+                        <div class="price-breakdown">
+                            <div class="price-row">
+                                <span>Subtotal</span>
+                                <span id="subtotal">₦0</span>
+                            </div>
+                            <div class="price-row">
+                                <span>Delivery</span>
+                                <span id="deliveryFee">₦2,000</span>
+                            </div>
+                            <div class="price-row discount" id="discountRow" style="display: none;">
+                                <span>Discount</span>
+                                <span id="discount">-₦0</span>
+                            </div>
+                            <div class="price-row total">
+                                <span>Total</span>
+                                <span id="total">₦0</span>
+                            </div>
+                        </div>
+
+                        <!-- Place Order Button -->
+                        <button class="place-order-btn" onclick="placeOrder()">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            Place Order
+                        </button>
+
+                        <!-- Security Badge -->
+                        <div class="security-badge">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                            </svg>
+                            <span>Secure checkout</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2021 Dulin. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Terms & Conditions</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Return Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="checkout.js"></script>
+    <!-- <script src="main.js"></script> -->
+</body>
+</html>

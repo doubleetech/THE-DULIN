@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us | Furniture & Living</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="about.css">
+</head>
+<body>
+
+  <!-- Hero Section -->
+  <!-- <section class="about-hero">
+    <div class="overlay"></div>
+    <div class="hero-content">
+      <h1>About Us</h1>
+      <p>Redefining comfort and style — one home at a time.</p>
+    </div>
+  </section> -->
+
+  <!-- Introduction -->
+  <section class="about-intro">
+    <div class="content">
+      <h2>Who We Are</h2>
+      <p>
+        We’re a modern furniture and household equipment brand dedicated to bringing timeless comfort,
+        natural aesthetics, and innovative design into every home. From eco-friendly materials to
+        contemporary craftsmanship, our goal is to make premium living accessible to everyone.
+      </p>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="about-stats">
+    <div class="stats-container">
+      <div class="stat-card">
+        <h3 class="count" data-target="10000">0</h3>
+        <p>Happy Customers</p>
+      </div>
+      <div class="stat-card">
+        <h3 class="count" data-target="5000">0</h3>
+        <p>Products Delivered</p>
+      </div>
+      <div class="stat-card">
+        <h3 class="count" data-target="50">0</h3>
+        <p>Trusted Partners</p>
+      </div>
+      <div class="stat-card">
+        <h3 class="count" data-target="8">0</h3>
+        <p>Years of Excellence</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values -->
+  <section class="about-values">
+    <h2>Our Core Values</h2>
+    <div class="values-grid">
+      <div class="value-card">
+        <div class="icon">🌿</div>
+        <h3>Sustainability</h3>
+        <p>We use responsibly sourced materials and eco-friendly production methods that protect our planet.</p>
+      </div>
+
+      <div class="value-card">
+        <div class="icon">🛋️</div>
+        <h3>Comfort & Design</h3>
+        <p>Our furniture blends ergonomics with beauty — designed to enhance every room with elegance and ease.</p>
+      </div>
+
+      <div class="value-card">
+        <div class="icon">🤝</div>
+        <h3>Customer Trust</h3>
+        <p>We believe in transparency, integrity, and service — ensuring that every purchase is effortless and secure.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Story -->
+  <section class="about-story">
+    <div class="story-container">
+      <div class="story-image"></div>
+      <div class="story-text">
+        <h2>Our Story</h2>
+        <p>
+          What began as a small local furniture store has grown into a full e-commerce experience for
+          quality household products. Our designers and artisans collaborate to create collections
+          that merge innovation with tradition — making your space a reflection of you.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission -->
+  <section class="about-mission">
+    <div class="mission-content">
+      <h2>Our Mission</h2>
+      <p>
+        To inspire modern living through affordable luxury — offering furniture and household pieces
+        that balance beauty, function, and sustainability.
+      </p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="about-footer">
+    <p>© 2025 Furniture & Living. All rights reserved.</p>
+  </footer>
+
+  <!-- Counter Animation Script -->
+  <script>
+    const counters = document.querySelectorAll('.count');
+    const speed = 150;
+
+    const animateCounters = () => {
+      counters.forEach(counter => {
+        const updateCount = () => {
+          const target = +counter.getAttribute('data-target');
+          const count = +counter.innerText;
+          const increment = target / speed;
+
+          if (count < target) {
+            counter.innerText = Math.ceil(count + increment);
+            setTimeout(updateCount, 20);
+          } else {
+            counter.innerText = target.toLocaleString();
+          }
+        };
+        updateCount();
+      });
+    };
+
+    let triggered = false;
+    window.addEventListener('scroll', () => {
+      const section = document.querySelector('.about-stats');
+      const sectionTop = section.offsetTop - window.innerHeight + 200;
+      if (window.scrollY > sectionTop && !triggered) {
+        animateCounters();
+        triggered = true;
+      }
+    });
+  </script>
+
+</body>
+</html>

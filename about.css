@@ -1,0 +1,244 @@
+/* Reset & General Styling */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-color: #f6f7f9;
+  color: #333;
+  scroll-behavior: smooth;
+}
+
+/* Hero Section */
+.about-hero {
+  position: relative;
+  height: 70vh;
+  background: url('https://images.unsplash.com/photo-1616627986783-8ce940ba2f03?auto=format&fit=crop&w=1500&q=80') center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 128, 0, 0.55);
+  backdrop-filter: blur(3px);
+}
+
+.hero-content {
+  position: relative;
+  text-align: center;
+  z-index: 2;
+  animation: fadeIn 1.5s ease;
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+
+/* Intro */
+.about-intro {
+  max-width: 900px;
+  margin: 80px auto 50px;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.about-intro h2 {
+  color: darkgreen;
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
+
+.about-intro p {
+  line-height: 1.7;
+  color: #444;
+}
+
+/* Stats Section */
+.about-stats {
+  background: darkgreen;
+  color: white;
+  padding: 70px 20px;
+  text-align: center;
+}
+
+.stats-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 40px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.stat-card {
+  flex: 1 1 200px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 30px 20px;
+  backdrop-filter: blur(5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transition: 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.stat-card h3 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.stat-card p {
+  font-size: 1rem;
+  color: #d9f0db;
+}
+
+/* Values Section */
+.about-values {
+  background-color: white;
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.about-values h2 {
+  color: darkgreen;
+  font-size: 2rem;
+  margin-bottom: 40px;
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.value-card {
+  background: rgba(255, 255, 255, 0.75);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 8px 20px rgba(0, 128, 0, 0.1);
+  transition: all 0.3s ease;
+  backdrop-filter: blur(8px);
+}
+
+.value-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 128, 0, 0.2);
+}
+
+.icon {
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
+
+/* Story Section */
+.about-story {
+  padding: 80px 20px;
+  background: linear-gradient(135deg, #e8f5e9, #ffffff);
+}
+
+.story-container {
+  max-width: 1100px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  align-items: center;
+}
+
+.story-image {
+  flex: 1 1 400px;
+  height: 300px;
+  border-radius: 20px;
+  background: url('https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=1500&q=80') center/cover no-repeat;
+  box-shadow: 0 10px 30px rgba(0, 128, 0, 0.15);
+}
+
+.story-text {
+  flex: 1 1 400px;
+}
+
+.story-text h2 {
+  color: darkgreen;
+  margin-bottom: 15px;
+}
+
+.story-text p {
+  line-height: 1.7;
+}
+
+/* Mission Section */
+.about-mission {
+  background: darkgreen;
+  color: white;
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.about-mission h2 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
+
+.about-mission p {
+  max-width: 700px;
+  margin: 0 auto;
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+
+/* Footer */
+.about-footer {
+  background: #f6f7f9;
+  color: #444;
+  text-align: center;
+  padding: 20px;
+  font-size: 0.95rem;
+  border-top: 1px solid #ddd;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(30px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 2.2rem;
+  }
+
+  .stats-container {
+    flex-direction: column;
+  }
+
+  .story-container {
+    flex-direction: column;
+  }
+
+  .story-image {
+    height: 250px;
+  }
+}

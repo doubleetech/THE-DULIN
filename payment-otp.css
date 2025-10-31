@@ -1,0 +1,270 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+    min-height: 100vh;
+}
+
+/* Navigation */
+nav {
+    background: white;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #166534;
+}
+
+.security-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #166534;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* Main Container */
+.otp-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    min-height: calc(100vh - 80px);
+}
+
+.otp-card {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    max-width: 500px;
+    width: 100%;
+    padding: 3rem 2.5rem;
+    text-align: center;
+}
+
+/* Icon */
+.otp-icon {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, #166534, #14532d);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 2rem;
+    animation: pulse 2s infinite;
+}
+
+.otp-icon svg {
+    color: white;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+/* Header */
+.otp-card h1 {
+    font-size: 1.75rem;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.otp-description {
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+}
+
+.otp-description strong {
+    color: #166534;
+}
+
+/* OTP Inputs */
+.otp-inputs {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+.otp-input {
+    width: 50px;
+    height: 60px;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+    border: 2px solid #e5e7eb;
+    border-radius: 10px;
+    outline: none;
+    transition: all 0.3s;
+}
+
+.otp-input:focus {
+    border-color: #166534;
+    background: #f0fdf4;
+    transform: scale(1.05);
+}
+
+.otp-input.filled {
+    border-color: #166534;
+    background: #f0fdf4;
+}
+
+/* Timer */
+.otp-timer {
+    margin-bottom: 2rem;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.otp-timer strong {
+    color: #166534;
+    font-weight: 700;
+}
+
+/* Verify Button */
+.verify-btn {
+    width: 100%;
+    padding: 1rem;
+    background: #166534;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.verify-btn:hover:not(:disabled) {
+    background: #14532d;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(22, 101, 52, 0.3);
+}
+
+.verify-btn:disabled {
+    background: #9ca3af;
+    cursor: not-allowed;
+}
+
+/* Resend Section */
+.resend-section {
+    padding: 1.5rem 0;
+    border-top: 1px solid #e5e7eb;
+    margin-bottom: 1.5rem;
+}
+
+.resend-section p {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+}
+
+.resend-btn {
+    background: none;
+    border: none;
+    color: #166534;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.resend-btn:hover:not(:disabled) {
+    color: #14532d;
+    text-decoration: underline;
+}
+
+.resend-btn:disabled {
+    color: #9ca3af;
+    cursor: not-allowed;
+}
+
+/* Amount Info */
+.amount-info {
+    background: #f9fafb;
+    padding: 1rem;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.amount-info span {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.amount-info strong {
+    color: #166534;
+    font-size: 1.25rem;
+}
+
+/* Toast Notification */
+.toast-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #166534;
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    z-index: 1000;
+    transform: translateX(400px);
+    transition: transform 0.3s ease;
+    font-weight: 500;
+}
+
+.toast-notification.show {
+    transform: translateX(0);
+}
+
+.toast-notification.success {
+    background: #166534;
+}
+
+.toast-notification.error {
+    background: #dc2626;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .otp-card {
+        padding: 2rem 1.5rem;
+    }
+
+    .otp-input {
+        width: 45px;
+        height: 55px;
+        font-size: 1.25rem;
+    }
+
+    .otp-inputs {
+        gap: 0.5rem;
+    }
+}
