@@ -1,6 +1,4 @@
 // Product Data
-// To use your own images, replace the image path with your image file
-// Example: image: 'images/chair1.jpg'
 const products = [
     { id: 1, name: 'Sofa Couch', price: 132000, rating: 5, image: 'images/sofa.jpg', category: 'Chair', stock: 10 },
     { id: 2, name: 'Single Sofa Chair', price: 100000, rating: 5, image: 'images/spa chair.jpg', category: 'Chair', stock: 15 },
@@ -12,30 +10,31 @@ const products = [
     { id: 8, name: 'Vaccum Cleaner', price: 135900, rating: 5, image: 'images/vaccuum cleaner.jpg', category: 'Lamp', stock: 15 },
 ];
 
-// State
-let cart = [];
+// State - Load cart from localStorage
+let cart = JSON.parse(localStorage.getItem('dulin_cart')) || [];
 let currentCategory = 'All';
 let searchQuery = '';
 
+// Save cart to localStorage
+function saveCart() {
+    localStorage.setItem('dulin_cart', JSON.stringify(cart));
+}
+
 // Show Toast Notification
 function showToast(message, type = 'success') {
-    // Remove existing toast if any
     const existingToast = document.querySelector('.toast-notification');
     if (existingToast) {
         existingToast.remove();
     }
 
-    // Create toast element
     const toast = document.createElement('div');
     toast.className = `toast-notification ${type}`;
     toast.textContent = message;
     
     document.body.appendChild(toast);
     
-    // Trigger animation
     setTimeout(() => toast.classList.add('show'), 100);
     
-    // Remove after 3 seconds
     setTimeout(() => {
         toast.classList.remove('show');
         setTimeout(() => toast.remove(), 300);
@@ -52,7 +51,6 @@ function getAvailableStock(productId) {
 
 // Check if image exists, fallback to emoji
 function getProductImage(product) {
-    // Try to use the image path, but fallback to emoji if image doesn't load
     const imageExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.webp'];
     const hasImageExtension = imageExtensions.some(ext => product.image.toLowerCase().includes(ext));
     
@@ -79,8 +77,8 @@ function getEmojiForCategory(category) {
 function init() {
     renderProducts();
     setupSearchListener();
+    updateCart(); // Load cart on page load
     
-    // Initialize Lucide icons after a short delay to ensure DOM is ready
     setTimeout(() => {
         if (typeof lucide !== 'undefined') {
             lucide.createIcons();
@@ -102,7 +100,6 @@ function setupSearchListener() {
 // Handle Search
 function handleSearch() {
     if (searchQuery.trim()) {
-        // Hide sections
         const whySection = document.getElementById('whySection');
         const experienceSection = document.getElementById('experienceSection');
         const materialsSection = document.getElementById('materialsSection');
@@ -119,13 +116,11 @@ function handleSearch() {
         if (categoryFilters) categoryFilters.classList.add('hidden');
         if (viewAll) viewAll.classList.add('hidden');
         
-        // Show search results header
         const searchResultsHeader = document.getElementById('searchResultsHeader');
         if (searchResultsHeader) {
             searchResultsHeader.classList.add('active');
         }
         
-        // Update search results text
         const filtered = getFilteredProducts();
         const searchResultsText = document.getElementById('searchResultsText');
         if (searchResultsText) {
@@ -146,7 +141,6 @@ function clearSearch() {
         searchInput.value = '';
     }
     
-    // Show sections
     const whySection = document.getElementById('whySection');
     const experienceSection = document.getElementById('experienceSection');
     const materialsSection = document.getElementById('materialsSection');
@@ -163,7 +157,6 @@ function clearSearch() {
     if (categoryFilters) categoryFilters.classList.remove('hidden');
     if (viewAll) viewAll.classList.remove('hidden');
     
-    // Hide search results header
     const searchResultsHeader = document.getElementById('searchResultsHeader');
     if (searchResultsHeader) {
         searchResultsHeader.classList.remove('active');
@@ -176,7 +169,6 @@ function clearSearch() {
 function filterCategory(category) {
     currentCategory = category;
     
-    // Update active button
     const buttons = document.querySelectorAll('.category-btn');
     buttons.forEach(btn => {
         if (btn.textContent === category) {
@@ -242,13 +234,12 @@ function renderProducts() {
         `}).join('');
     }
     
-    // Reinitialize icons
     if (typeof lucide !== 'undefined') {
         lucide.createIcons();
     }
 }
 
-// Add to Cart
+// Add to Cart - FIXED to save to localStorage
 function addToCart(productId) {
     const product = products.find(p => p.id === productId);
     if (!product) return;
@@ -270,11 +261,12 @@ function addToCart(productId) {
         showToast(`${product.name} added to cart!`, 'success');
     }
     
+    saveCart(); // SAVE TO LOCALSTORAGE
     updateCart();
-    renderProducts(); // Re-render to update stock badges
+    renderProducts();
 }
 
-// Update Quantity
+// Update Quantity - FIXED to save to localStorage
 function updateQuantity(productId, change) {
     const item = cart.find(item => item.id === productId);
     if (!item) return;
@@ -293,8 +285,9 @@ function updateQuantity(productId, change) {
     }
     
     item.quantity = newQuantity;
+    saveCart(); // SAVE TO LOCALSTORAGE
     updateCart();
-    renderProducts(); // Re-render to update stock badges
+    renderProducts();
     
     if (change > 0) {
         showToast('Quantity increased!', 'info');
@@ -303,18 +296,19 @@ function updateQuantity(productId, change) {
     }
 }
 
-// Remove from Cart
+// Remove from Cart - FIXED to save to localStorage
 function removeFromCart(productId) {
     const item = cart.find(item => item.id === productId);
     if (item) {
         cart = cart.filter(item => item.id !== productId);
         showToast(`${item.name} removed from cart!`, 'error');
+        saveCart(); // SAVE TO LOCALSTORAGE
         updateCart();
-        renderProducts(); // Re-render to update stock badges
+        renderProducts();
     }
 }
 
-// Update Cart
+// Update Cart Display
 function updateCart() {
     const cartItemsContainer = document.getElementById('cartItems');
     const cartFooter = document.getElementById('cartFooter');
@@ -381,7 +375,6 @@ function updateCart() {
         }
     }
     
-    // Reinitialize icons
     if (typeof lucide !== 'undefined') {
         lucide.createIcons();
     }
@@ -401,34 +394,25 @@ function toggleCart() {
 // Initialize on page load
 window.addEventListener('DOMContentLoaded', init);
 
-// Also try to initialize icons when the script loads
 if (typeof lucide !== 'undefined') {
     lucide.createIcons();
 }
 
-// ===== Hero Background Carousel =====
+// Hero Background Carousel
 let currentSlide = 0;
 const slides = document.querySelectorAll(".carousel-image");
 
 function showNextSlide() {
-  slides[currentSlide].classList.remove("active");
-  currentSlide = (currentSlide + 1) % slides.length;
-  slides[currentSlide].classList.add("active");
+    if (slides.length > 0) {
+        slides[currentSlide].classList.remove("active");
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add("active");
+    }
 }
 
-// Auto-slide every 5 seconds
 setInterval(showNextSlide, 5000);
 
-
-
-
-
-
-
-//Account Dropdown JavaScript
-// Simplified Account Dropdown JavaScript - Copy this to your JS file
-
-// Toggle Account Dropdown
+// Account Dropdown
 function toggleAccountDropdown() {
     const menu = document.getElementById('accountDropdownMenu');
     const btn = document.querySelector('.account-btn');
@@ -439,7 +423,6 @@ function toggleAccountDropdown() {
     }
 }
 
-// Close dropdown when clicking outside
 document.addEventListener('click', function(event) {
     const wrapper = document.querySelector('.account-dropdown-wrapper');
     const menu = document.getElementById('accountDropdownMenu');
@@ -451,29 +434,24 @@ document.addEventListener('click', function(event) {
     }
 });
 
-// Check if user is logged in (from localStorage)
 function checkLoginStatus() {
     const isLoggedIn = localStorage.getItem('dulin_user_logged_in') === 'true';
     const userName = localStorage.getItem('dulin_user_name');
     
     if (isLoggedIn && userName) {
-        // Hide sign in button
         const signinSection = document.getElementById('dropdownSignin');
         if (signinSection) signinSection.style.display = 'none';
         
-        // Show logout button
         const logoutLink = document.getElementById('logoutLink');
         const logoutDivider = document.getElementById('logoutDivider');
         if (logoutLink) logoutLink.style.display = 'flex';
         if (logoutDivider) logoutDivider.style.display = 'block';
         
-        // Update account button text
         const accountBtn = document.querySelector('.account-btn span');
         if (accountBtn) accountBtn.textContent = userName;
     }
 }
 
-// Handle Logout
 function handleLogout(event) {
     event.preventDefault();
     
@@ -481,12 +459,10 @@ function handleLogout(event) {
         localStorage.removeItem('dulin_user_logged_in');
         localStorage.removeItem('dulin_user_name');
         
-        // Show success message if showToast function exists
         if (typeof showToast === 'function') {
             showToast('Logged out successfully', 'info');
         }
         
-        // Reload page to reset UI
         setTimeout(() => {
             window.location.reload();
         }, 500);
@@ -494,7 +470,6 @@ function handleLogout(event) {
     return false;
 }
 
-// Initialize on page load
 window.addEventListener('DOMContentLoaded', function() {
     checkLoginStatus();
 });
